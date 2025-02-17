@@ -28,10 +28,14 @@ export default {
         primary: {
           DEFAULT: "#2DD4BF",
           foreground: "#FFFFFF",
+          light: "#4FE8D3",
+          dark: "#20A896",
         },
         secondary: {
           DEFAULT: "#F3F4F6",
           foreground: "#1F2937",
+          light: "#F9FAFB",
+          dark: "#E5E7EB",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -76,10 +80,28 @@ export default {
             transform: "translateY(0)",
           },
         },
+        float: {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-5px)",
+          },
+        },
+        shine: {
+          "0%": { backgroundPosition: "200% 0" },
+          "100%": { backgroundPosition: "-200% 0" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-down": "fade-down 0.5s ease-out",
+        float: "float 3s ease-in-out infinite",
+        shine: "shine 8s ease-in-out infinite",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "hero-pattern": "linear-gradient(to right bottom, rgba(45, 212, 191, 0.1), rgba(45, 212, 191, 0.05))",
       },
     },
   },

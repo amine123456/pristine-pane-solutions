@@ -127,7 +127,7 @@ const Index = () => {
             alt="Modern building with clean windows"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
         </div>
         
         <motion.div
@@ -136,15 +136,15 @@ const Index = () => {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-6 relative z-10 text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-down">
             Professional Window Cleaning
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-up">
             Expert commercial window cleaning services for businesses of all sizes
           </p>
           <a
             href="#contact"
-            className="inline-block px-8 py-4 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+            className="inline-block px-8 py-4 bg-primary text-white rounded-md hover:bg-primary-light transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-200"
           >
             Get a Free Quote
           </a>
@@ -152,7 +152,7 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-20 bg-gradient-to-b from-white to-secondary-light">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -161,7 +161,9 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">Our Services</h2>
+            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-dark via-primary to-primary-light">
+              Our Services
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We provide comprehensive window cleaning solutions tailored to your needs
             </p>
@@ -175,10 +177,15 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                className="group p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
-                <service.icon className="w-12 h-12 text-primary mb-4 mx-auto" />
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <div className="relative w-16 h-16 mx-auto mb-4 animate-float">
+                  <div className="absolute inset-0 bg-primary/10 rounded-full transform group-hover:scale-110 transition-transform duration-300" />
+                  <service.icon className="w-16 h-16 text-primary p-3 relative z-10 group-hover:text-primary-dark transition-colors duration-300" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
+                  {service.title}
+                </h3>
                 <p className="text-gray-600">{service.description}</p>
               </motion.div>
             ))}
@@ -186,9 +193,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Showcase */}
-      <section id="projects" className="py-20 bg-secondary">
-        <div className="container mx-auto px-6">
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-pattern opacity-50" />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -215,11 +223,15 @@ const Index = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                  <p className="text-white/90">{project.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <h3 className="text-xl font-semibold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-white/90 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                    {project.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -228,7 +240,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-primary">
+      <section className="py-16 bg-gradient-to-r from-primary-dark via-primary to-primary-light">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -238,9 +250,11 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="text-center transform hover:-translate-y-1 transition-transform duration-300"
               >
-                <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
+                <div className="text-4xl font-bold text-white mb-2 animate-float">
+                  {stat.value}
+                </div>
                 <div className="text-white/90">{stat.label}</div>
               </motion.div>
             ))}
@@ -393,9 +407,11 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8"
+            className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 transform hover:shadow-2xl transition-all duration-300"
           >
-            <h2 className="text-3xl font-bold mb-8 text-center">Contact Us</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-primary">
+              Contact Us
+            </h2>
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -404,7 +420,7 @@ const Index = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition-all duration-200"
                     placeholder="Your name"
                   />
                 </div>
@@ -414,7 +430,7 @@ const Index = () => {
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition-all duration-200"
                     placeholder="Your email"
                   />
                 </div>
@@ -425,14 +441,14 @@ const Index = () => {
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition-all duration-200"
                   placeholder="Your message"
                 ></textarea>
               </div>
               <div className="text-center">
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+                  className="px-8 py-3 bg-primary text-white rounded-md hover:bg-primary-light transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Send Message
                 </button>
