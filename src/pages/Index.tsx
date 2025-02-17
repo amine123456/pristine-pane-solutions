@@ -121,47 +121,100 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          initial={{ scale: 1.1, opacity: 0.5 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 z-0"
+        >
           <img
             src="https://images.unsplash.com/photo-1496307653780-42ee777d4833"
             alt="Modern building with clean windows"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+        </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, delay: 0.5 }}
           className="container mx-auto px-6 relative z-10 text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-down">
-            Professional Window Cleaning
-          </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-up">
-            Expert commercial window cleaning services for businesses of all sizes
-          </p>
-          <a
-            href="#contact"
-            className="inline-block px-8 py-4 bg-primary text-white rounded-md hover:bg-primary-light transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-200"
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-5xl md:text-7xl font-bold text-white mb-6"
           >
-            Get a Free Quote
+            Professional Window
+            <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-primary-light via-primary to-primary-dark animate-shine">
+              Cleaning Services
+            </span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+          >
+            Expert commercial window cleaning services for businesses of all sizes
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+          >
+            <a
+              href="#contact"
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-md overflow-hidden transition-all duration-300 ease-out hover:bg-primary-dark"
+            >
+              <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+              <span className="relative">Get a Free Quote</span>
+            </a>
+          </motion.div>
+        </motion.div>
+        
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        >
+          <a href="#services" className="text-white opacity-80 hover:opacity-100 transition-opacity">
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </motion.div>
           </a>
         </motion.div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gradient-to-b from-white to-secondary-light">
-        <div className="container mx-auto px-6">
+      <section id="services" className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent" />
+        <div className="container mx-auto px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-dark via-primary to-primary-light">
+            <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-dark via-primary to-primary-light animate-shine">
               Our Services
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -177,13 +230,18 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className="group p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300"
               >
-                <div className="relative w-16 h-16 mx-auto mb-4 animate-float">
-                  <div className="absolute inset-0 bg-primary/10 rounded-full transform group-hover:scale-110 transition-transform duration-300" />
-                  <service.icon className="w-16 h-16 text-primary p-3 relative z-10 group-hover:text-primary-dark transition-colors duration-300" />
+                <div className="relative w-16 h-16 mx-auto mb-4">
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute inset-0 bg-primary/10 rounded-full"
+                  />
+                  <service.icon className="w-16 h-16 text-primary p-3 relative z-10 transition-colors duration-300 group-hover:text-primary-dark" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">
                   {service.title}
                 </h3>
                 <p className="text-gray-600">{service.description}</p>
@@ -196,15 +254,20 @@ const Index = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-secondary relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-pattern opacity-50" />
-        <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="container mx-auto px-6 relative z-10"
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">Our Projects</h2>
+            <h2 className="text-4xl font-bold mb-4">Our Projects</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Explore some of our recent window cleaning projects and success stories
             </p>
@@ -214,34 +277,51 @@ const Index = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
                 className="group relative overflow-hidden rounded-lg shadow-lg"
               >
-                <img
+                <motion.img
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-64 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-semibold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-6"
+                >
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-white/90 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                    {project.description}
-                  </p>
-                </div>
+                  <p className="text-white/90">{project.description}</p>
+                </motion.div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-dark via-primary to-primary-light">
-        <div className="container mx-auto px-6">
+      <section className="py-16 bg-gradient-to-r from-primary-dark via-primary to-primary-light relative overflow-hidden">
+        <motion.div
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute inset-0 opacity-10 bg-[length:20px_20px] bg-grid-pattern"
+        />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -250,12 +330,21 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center transform hover:-translate-y-1 transition-transform duration-300"
+                className="text-center"
               >
-                <div className="text-4xl font-bold text-white mb-2 animate-float">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    delay: index * 0.1,
+                  }}
+                  className="text-5xl font-bold text-white mb-2"
+                >
                   {stat.value}
-                </div>
-                <div className="text-white/90">{stat.label}</div>
+                </motion.div>
+                <div className="text-white/90 text-lg">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -263,16 +352,17 @@ const Index = () => {
       </section>
 
       {/* Company Values */}
-      <section id="values" className="py-20 bg-white">
+      <section id="values" className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-section-pattern opacity-50" />
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">Our Values</h2>
+            <h2 className="text-4xl font-bold mb-4">Our Values</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               The principles that guide our work and commitment to excellence
             </p>
@@ -298,16 +388,17 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section id="testimonials" className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-section-pattern opacity-50" />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
+            <h2 className="text-4xl font-bold mb-4">What Our Clients Say</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Hear from businesses that trust us with their window cleaning needs
             </p>
@@ -321,10 +412,13 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-secondary p-8 rounded-lg"
+                whileHover={{ y: -5 }}
+                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-center mb-6">
-                  <img
+                  <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-16 h-16 rounded-full object-cover mr-4"
@@ -343,16 +437,17 @@ const Index = () => {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="py-20 bg-secondary">
+      <section id="team" className="py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 bg-section-pattern opacity-50" />
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">Our Leadership Team</h2>
+            <h2 className="text-4xl font-bold mb-4">Our Leadership Team</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Meet the experienced professionals behind our success
             </p>
@@ -400,68 +495,97 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-secondary">
-        <div className="container mx-auto px-6">
+      <section id="contact" className="py-20 bg-secondary relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="container mx-auto px-6"
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 transform hover:shadow-2xl transition-all duration-300"
+            className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8"
           >
-            <h2 className="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-primary">
+            <h2 className="text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-primary">
               Contact Us
             </h2>
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Name
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition-all duration-200"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
                     placeholder="Your name"
                   />
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Email
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition-all duration-200"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
                     placeholder="Your email"
                   />
-                </div>
+                </motion.div>
               </div>
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Message
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
                   placeholder="Your message"
                 ></textarea>
-              </div>
-              <div className="text-center">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-center"
+              >
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-primary text-white rounded-md hover:bg-primary-light transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="group relative px-8 py-3 bg-primary text-white rounded-md overflow-hidden transition-all duration-300"
                 >
-                  Send Message
+                  <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                  <span className="relative">Send Message</span>
                 </button>
-              </div>
+              </motion.div>
             </form>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-12"
+          >
             <div>
               <h3 className="text-xl font-bold mb-4">CrystalClear Pro</h3>
               <p className="text-gray-400 mb-4">
@@ -548,7 +672,7 @@ const Index = () => {
                 <li>Email: info@crystalclearpro.com</li>
               </ul>
             </div>
-          </div>
+          </motion.div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
             <p>&copy; {new Date().getFullYear()} CrystalClear Pro. All rights reserved.</p>
           </div>

@@ -63,7 +63,7 @@ export default {
         "fade-up": {
           "0%": {
             opacity: "0",
-            transform: "translateY(10px)",
+            transform: "translateY(20px)",
           },
           "100%": {
             opacity: "1",
@@ -73,7 +73,7 @@ export default {
         "fade-down": {
           "0%": {
             opacity: "0",
-            transform: "translateY(-10px)",
+            transform: "translateY(-20px)",
           },
           "100%": {
             opacity: "1",
@@ -85,23 +85,50 @@ export default {
             transform: "translateY(0)",
           },
           "50%": {
-            transform: "translateY(-5px)",
+            transform: "translateY(-10px)",
           },
         },
         shine: {
           "0%": { backgroundPosition: "200% 0" },
           "100%": { backgroundPosition: "-200% 0" },
         },
+        "scale-up": {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
+        wave: {
+          "0%": { transform: "rotate(0.0deg)" },
+          "10%": { transform: "rotate(14deg)" },
+          "20%": { transform: "rotate(-8deg)" },
+          "30%": { transform: "rotate(14deg)" },
+          "40%": { transform: "rotate(-4deg)" },
+          "50%": { transform: "rotate(10.0deg)" },
+          "60%": { transform: "rotate(0.0deg)" },
+          "100%": { transform: "rotate(0.0deg)" },
+        },
       },
       animation: {
-        "fade-up": "fade-up 0.5s ease-out",
-        "fade-down": "fade-down 0.5s ease-out",
+        "fade-up": "fade-up 0.7s ease-out",
+        "fade-down": "fade-down 0.7s ease-out",
         float: "float 3s ease-in-out infinite",
         shine: "shine 8s ease-in-out infinite",
+        "scale-up": "scale-up 0.5s ease-out",
+        "slide-in": "slide-in 0.7s ease-out",
+        pulse: "pulse 2s ease-in-out infinite",
+        wave: "wave 2.5s ease-in-out infinite",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "hero-pattern": "linear-gradient(to right bottom, rgba(45, 212, 191, 0.1), rgba(45, 212, 191, 0.05))",
+        "section-pattern": "linear-gradient(to right top, rgba(45, 212, 191, 0.05), rgba(45, 212, 191, 0.02))",
       },
     },
   },
